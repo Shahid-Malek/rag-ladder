@@ -1,0 +1,24 @@
+# Explicit app/parser build allowlist; no credentials, reports, fixtures or local assets.
+**
+!.dockerignore
+!Dockerfile
+!app.py
+!bake_models.py
+!config.py
+!container_health.py
+!container_start.py
+!guardrails.py
+!level1.py
+!level2.py
+!level3.py
+!limiter.conf
+!llm.py
+!parser_ipc.py
+!parser_service.py
+!parser_worker.py
+!protection.py
+!requirements-hosted.txt
+!requirements-parser.txt
+!session_store.py
+!sessions.py
+!watchdog.py

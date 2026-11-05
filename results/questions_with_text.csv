@@ -1,0 +1,242 @@
+neutral_id,question_text
+Q-001,What does virality mean for big data?
+Q-002,"What is the default HDFS block size, and is it fixed?"
+Q-003,NoSQL full form?
+Q-004,"In a data stream, what does the zeroth-frequency moment F0 count?"
+Q-005,"What does fs.defaultFS specify, and which Hadoop configuration file contains it?"
+Q-006,What does RDD expand to in Spark?
+Q-007,What is Hadoop KMS used for?
+Q-008,What is HCatalog in Hadoop?
+Q-009,Which Hadoop helper combines EditLogs with FsImage and makes checkpoints?
+Q-010,Which HDFS shell command creates a zero-length file?
+Q-011,Why can having lots of data still leave us unsure whether an analysis is trustworthy?
+Q-012,"Where does a DataNode keep actual data, and what requests does it handle for clients?"
+Q-013,How does auto-sharding help a NoSQL database cope with added or failed servers?
+Q-014,Why is skipping an item during stream sampling more serious than skipping an item in a stored dataset?
+Q-015,How does a Hive multitable insert avoid repeatedly reading the same input?
+Q-016,How does GraphX represent a graph and what can it attach to vertices and edges?
+Q-017,How can Sqoop move data between a relational database and Hadoop?
+Q-018,"How does Flume bring server data into Hadoop, and what reliability does it offer?"
+Q-019,Name the three main challenges that conventional systems face with big data.
+Q-020,What are the three stages of copying blocks during an HDFS write?
+Q-021,List the three main steps of the MapReduce algorithm.
+Q-022,Name two graph algorithms supplied by GraphX.
+Q-023,What are four advantages of using Spark for growing data workloads?
+Q-024,Compare SQL and NoSQL on predefined schemas and the direction in which they scale.
+Q-025,How does Hadoop’s use of disk differ from MongoDB’s use of memory for query latency?
+Q-026,How do Hive partitions and buckets divide records differently?
+Q-027,"Is Pig Latin procedural or declarative, and how is HiveQL different?"
+Q-028,What changes when a Hadoop cluster scales out rather than scales up?
+Q-029,"Explain the problem posed by varied data formats, then give Walmart’s example of turning purchase patterns into recommendations."
+Q-030,A 248 MB file is written to HDFS with 128 MB blocks and the default replication factor. What blocks are made and how many stored block copies are there altogether?
+Q-031,"Where does Hive normally keep table data and metadata, and what does dropping a managed table remove?"
+Q-032,"Describe where an RDD’s partitions can live, then explain what count() and collect() return."
+Q-033,"How do Hive multitable inserts reduce source scans, and when does Spark actually compute an RDD transformation?"
+Q-034,"Compare the keep-alive behavior of an HDFS DataNode with that of a ZooKeeper client, including what the client does if its server stops responding."
+Q-035,Does volatility in stream mining mean the same thing as immutability of a Spark RDD?
+Q-036,Contrast NoSQL’s flexibility when inserting data with Hive’s explicit storage of table definitions and mappings.
+Q-037,"What stages can a Spark MLlib pipeline organize, and which generic optimization primitive does MLlib also provide?"
+Q-038,"In the employee example, what department and salary values belong to Employee_ID 1 and Employee_ID 4?"
+Q-039,"For the illustrated 518 MB HDFS file split into 128 MB blocks, how many blocks are there and how large is the last one?"
+Q-040,"Using the AMS estimate n * (2 * X.value - 1), what estimate is obtained when n is 15 and X.value is 3?"
+Q-041,"When sales is LEFT OUTER JOINed to things on id, what output row is shown for Avinash with sales id 0?"
+Q-042,"In the worked colour-word count example, what are the final counts for Blue, Green and Red?"
+Q-043,How does Count-Min Sketch choose its width and depth from error and confidence parameters?
+Q-044,Explain how HDFS erasure coding uses the Reed-Solomon RS-6-3 layout.
+Q-045,How do watermarks control old state eviction in Spark Structured Streaming?
+Q-046,How does Apache Iceberg provide snapshot isolation and time travel for Hive tables?
+Q-047,write short note on ida n its 3 steps plz
+Q-048,hadoop in cloud?? give 2 reasons for exam
+Q-049,hive add column old rows showing null why??
+Q-050,spark dataframe create 3 ways pls
+Q-051,What does a security threat mean?
+Q-052,What two areas together make up cryptology?
+Q-053,What is steganography trying to hide?
+Q-054,What makes a DES key a weak key?
+Q-055,What is a nonce in encryption?
+Q-056,When is y the multiplicative inverse of x modulo n?
+Q-057,What exactly does Euler's totient function count?
+Q-058,What does a compression function do inside a hash function?
+Q-059,What is SHA short for?
+Q-060,"What is DAA, and which encryption algorithm is it based on?"
+Q-061,Why can letter-frequency analysis still break a monoalphabetic substitution even with so many possible keys?
+Q-062,Why doesn't trying every key reveal the intended plaintext of a one-time pad?
+Q-063,How does a Feistel cipher decrypt using the same overall process as encryption?
+Q-064,Why don't designers simply keep increasing a Feistel cipher's block size and key size?
+Q-065,How does meeting in the middle weaken Double DES?
+Q-066,"After replacing the public values in Diffie-Hellman, how can a middle attacker read messages without Alice and Bob noticing?"
+Q-067,How does adding a salt make precomputed password tables less useful?
+Q-068,"If the received MAC and the recomputed MAC differ, what can the receiver conclude?"
+Q-069,List the six security services.
+Q-070,Which seven parameters or design features are considered when designing a Feistel cipher?
+Q-071,What advantages does counter mode provide?
+Q-072,What computational requirements should a public-key cryptosystem satisfy?
+Q-073,Give three situations where using a MAC is useful.
+Q-074,How is cryptanalysis different from a brute-force attack?
+Q-075,What is the main difference between substitution and transposition in how they change letters?
+Q-076,"What relationship does diffusion hide, and how is that different from confusion?"
+Q-077,"In CFB and OFB, what gets fed back and what size of plaintext unit is processed?"
+Q-078,How does weak collision resistance differ from strong collision resistance?
+Q-079,"Why is repeating an XOR key risky, and what key rules and practical difficulties come with a one-time pad?"
+Q-080,"For DES, explain how the 64-bit starting key becomes per-round subkeys and how those subkeys are used to decrypt."
+Q-081,"Work through RSA with p=3, q=11, e=7 and message 14: what are phi(n), d, the ciphertext, and the recovered message?"
+Q-082,"How is SHA-512 input padded, and what buffer and round layout process the padded blocks?"
+Q-083,"What is the difference between replay and masquerade, and which one is illustrated by an attacker replacing the public values in Diffie-Hellman?"
+Q-084,Describe how AES and RSA differ in their data-block representation and the keys they use.
+Q-085,"Why can’t CBC encrypt blocks in parallel, and what cipher, IV and final-block padding does DAA use?"
+Q-086,Why can a digital signature identify the sender in a dispute while a shared-key MAC cannot?
+Q-087,"What digest length does MD5 produce, and why can a hash-based MAC be cheaper to implement than encryption-based authentication?"
+Q-088,"Using the Playfair square built from MONARCHY, what does the pair HS encrypt to, and why?"
+Q-089,"For AES SubBytes input B3, which S-box row and column are selected and what byte comes out?"
+Q-090,"In Diffie-Hellman with q=13, alpha=6, Alice's private value 3 and Bob's private value 10, what public values and common secret result?"
+Q-091,"What are the digest, block and word sizes of SHA-256 and SHA-512?"
+Q-092,"In the CMAC formula T = MSB_Tlen(Cn), what do T, Tlen and MSB mean?"
+Q-093,How should the memory and time cost parameters of Argon2id be chosen for a password hash?
+Q-094,What are the RSA OAEP encoding steps before modular exponentiation?
+Q-095,How does Keccak's sponge construction absorb an input and squeeze out a digest?
+Q-096,How are X25519 public keys encoded and used to derive a shared secret?
+Q-097,"caeser cipher shift 3 example pls, what happens to MEET ME AFTER THE PARTY?"
+Q-098,"227 bytes msg, 16 byte blocks... how much padding at the end?"
+Q-099,3 primitive root mod 7?? explain w example for exam
+Q-100,"avalanche efect in hash, short ans for exam"
+Q-101,"In neural-network training, what does one epoch mean?"
+Q-102,"What is Softplus, and what smoothness property does it have?"
+Q-103,What makes a binary neural network binary?
+Q-104,What does a membership function measure in fuzzy logic?
+Q-105,Expand ANFIS.
+Q-106,GPU full form?
+Q-107,What does AdaGrad stand for and what does it adapt?
+Q-108,What is IoU measuring in object detection?
+Q-109,What is the BMU in SOM training?
+Q-110,What connection restriction gives an RBM its name?
+Q-111,Why can deep learning reduce the work of designing image features by hand?
+Q-112,How do nonlinear activations help recognize handwritten digits even when the writing changes?
+Q-113,How does the neural part of a neuro-fuzzy system learn from fuzzy inference results?
+Q-114,How do fuzzy logic and learning from patient data work together in a neuro-fuzzy diagnosis system?
+Q-115,Why are GPUs useful for the matrix-heavy calculations in deep learning?
+Q-116,How can the randomness in SGD help optimization instead of only making it noisy?
+Q-117,Why is the discriminator held fixed when training the GAN generator?
+Q-118,How does an RBF neuron respond as an input moves farther from its stored prototype?
+Q-119,Name two practical difficulties in designing and training a neuro-fuzzy system.
+Q-120,What are the main steps for fine-tuning a pretrained model for a new task?
+Q-121,"Which three pooling choices are used in CNNs, and what does each keep?"
+Q-122,List three ways to make deep RNN training more stable.
+Q-123,Name the three gates in an LSTM cell.
+Q-124,How do machine learning and deep learning differ in dataset size and computing power?
+Q-125,How do sigmoid and tanh differ in their output range and centering?
+Q-126,What changes in the pretrained weights when I use fine-tuning instead of fixed feature extraction?
+Q-127,How are connections and weights different in a convolutional layer versus a dense layer?
+Q-128,Why does RMSProp keep learning longer than AdaGrad when squared gradients build up?
+Q-129,"How is the error function used during learning, and what separate problem can tiny adversarial input changes cause after a deep model has learned?"
+Q-130,"Does minimizing training loss guarantee good predictions on new data, and what overfitting caution is given for Adam?"
+Q-131,"In a CNN, what happens in a convolution before flattening, and why is flattening needed before a dense layer?"
+Q-132,"How does an RNN carry context forward, and why can training it backward through many time steps lose that context?"
+Q-133,"After SOM picks its best matching node, how does its next learning step differ from the reconstruction step in an RBM?"
+Q-134,"Why freeze pretrained layers in feature extraction, and why freeze the discriminator while updating a GAN generator?"
+Q-135,How is an RBF hidden neuron matching an input to a center different from a CNN filter looking for local image features?
+Q-136,"What can ANFIS training adjust in its fuzzy rules, and how does learning refine a neuro-fuzzy diabetes risk predictor?"
+Q-137,"Why would a single perceptron fail on XOR, while remembering France earlier in a sentence calls for an LSTM memory mechanism?"
+Q-138,"For hidden outputs [0.8, 0] and output weights [0.7, 0.2], what weighted sum and spam probability does the sigmoid example give?"
+Q-139,"Which TensorFlow calls implement fuzzy AND and OR, and what expression implements fuzzy NOT?"
+Q-140,"When an RNN is unrolled for a sequence of length 5, how many hidden-layer copies appear, and do those copies have different weights?"
+Q-141,"In gradient descent on f(x)=x², what update does the derivative 2x give, and where is the minimum?"
+Q-142,"In the sigmoid backprop example with x1=0.35, x2=0.9 and learning rate 1, what are the updated weights from hidden units 3 and 4 to output unit 5?"
+Q-143,How do rotary positional embeddings encode token positions in a Transformer?
+Q-144,How does low-rank adaptation (LoRA) reduce the number of trainable weights during fine-tuning?
+Q-145,How does AdamW decouple weight decay from the Adam update?
+Q-146,What is the forward noise schedule in a diffusion model?
+Q-147,"fuzzy logic arch short note pls, what happens to crisp input and output?"
+Q-148,how train binary net if activations arent differentiable??
+Q-149,lstm frget gate 0 vs 1 meaning?
+Q-150,write short note on DBN pretraining then finetuning
+Q-151,What does REPL stand for in Python?
+Q-152,"What are Python keywords, and can I use one as my function name?"
+Q-153,What is an exception in Python?
+Q-154,What does recursion mean for a Python function?
+Q-155,"In the Tkinter background, what is Tcl short for?"
+Q-156,What does the SQLite BLOB type hold?
+Q-157,"What is PIP expanded as, and what is it used for?"
+Q-158,NumPy full form?
+Q-159,What kind of data structure is a Pandas DataFrame?
+Q-160,"If I zip two sequences of unequal lengths, what decides the result length?"
+Q-161,How does execution move between try and except when an error happens?
+Q-162,Why put cleanup work in a finally block?
+Q-163,How can a function still run when I leave out an argument?
+Q-164,Why can del remove a whole string variable but not just change one of its characters?
+Q-165,What keeps a Tkinter window responding after I create it?
+Q-166,Why is Python described as having both a compilation step and an interpretation step?
+Q-167,Why are NumPy arrays quicker to access and manipulate than ordinary lists?
+Q-168,Why is loading a pickle someone sent me a security concern?
+Q-169,Which four kinds of function arguments are covered in Python?
+Q-170,What are the three variable categories when grouped by scope?
+Q-171,What are the basic steps to get a Tkinter desktop app running?
+Q-172,Name the built-in numeric data types in Python.
+Q-173,Which four pickle methods handle saving and restoring data?
+Q-174,What is the difference between an absolute file path and a relative one?
+Q-175,How does direct recursion differ from indirect recursion?
+Q-176,How are stack and queue removal orders different?
+Q-177,How do text mode and binary mode differ when reading a file?
+Q-178,What is different about the outputs predicted by linear regression and logistic regression?
+Q-179,Where can a local variable and a global variable be accessed in a Python program?
+Q-180,"How do I save a dictionary to a pickle file and then restore the dictionary, including the file modes?"
+Q-181,"What are the steps to connect to a SQLite database, get a cursor for SQL, and avoid losing updates when closing?"
+Q-182,"Why is list2 = list1 risky if I want a separate copy, and what three copying options can I use?"
+Q-183,"When saving Python objects with pickle and updating a SQLite database, what should I watch out for when loading and closing?"
+Q-184,"I need NumPy for calculations and Tkinter for a window. Which one needs a pip install command, and which comes with Python?"
+Q-185,"For student records, what restrictions apply to dictionary keys, and how can I give a Pandas DataFrame row a name and retrieve it?"
+Q-186,I want to read and edit an existing file in the parent folder without truncating it on open. Which file mode and relative-path marker fit?
+Q-187,"I'm making a histogram and the Batman/John wick/Spiderman/Krish pie example. What do the histogram axes represent, and which pie slice is pulled out, by how much?"
+Q-188,"What does this Python code print?
+```Python
+OGlist = [2, 4, 10, 20, 5, 2, 20, 4]
+finallist = []
+for num in OGlist:
+    if num not in finallist:
+        finallist.append(num)
+print(finallist)
+```"
+Q-189,"What is the output here?
+```Python
+dict1 = {""a"": 1, ""b"": 2}
+dict2 = {""b"": 3, ""c"": 4}
+merged_dict = dict1.copy()
+merged_dict.update(dict2)
+print(merged_dict)
+```"
+Q-190,"What gets printed by these three function calls?
+```Python
+def add_numbers(a=7, b=8):
+    total = a + b
+    print(""Sum:"", total)
+add_numbers(2, 3)
+add_numbers(a=2)
+add_numbers()
+```"
+Q-191,"Trace this recursive code. What is printed?
+```Python
+def sum(n):
+    if n <= 1:
+        return n
+    else:
+        ans = sum(n - 1)
+    return n + ans
+print(sum(6))
+```"
+Q-192,"What are the three lines printed by this slicing example?
+```Python
+String = ""ASTRING""
+s1 = slice(3)
+s2 = slice(1, 5, 2)
+s3 = slice(-1, -12, -2)
+print(String[s1])
+print(String[s2])
+print(String[s3])
+```"
+Q-193,How does asyncio.TaskGroup cancel the remaining tasks when one task fails?
+Q-194,How do I use contextvars.ContextVar to keep request-specific values separate in async Python code?
+Q-195,How does functools.singledispatch choose an implementation based on an argument type?
+Q-196,Explain structural pattern matching with match-case and a capture pattern in Python.
+Q-197,set remov vs discard... missing item hai toh kya hoga?
+Q-198,"short note on raw strngs pls, where useful?"
+Q-199,write short note on nested dict with example
+Q-200,Explain parent and child widgets in Tkinter.
