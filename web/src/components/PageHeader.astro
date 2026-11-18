@@ -1,0 +1,14 @@
+---
+import Section from './Section.astro';
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+const { eyebrow, title, description } = Astro.props;
+---
+
+<Section eyebrow={eyebrow} hero class="page-header">
+  <h1>{title}</h1>
+  <p class="intro">{description}</p>
+</Section>

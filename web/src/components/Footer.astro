@@ -1,0 +1,118 @@
+---
+import { site } from '@/data/site';
+import { withBase } from '@/lib/paths';
+import GithubLogo from '@/assets/logos/github.svg';
+---
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a class="footer-name" href={withBase('/')}>
+        RAG—Ladder
+      </a>
+      <p>
+        Three approaches to finding
+        <br />
+        answers in student notes.
+      </p>
+    </div>
+    <div>
+      <span class="eyebrow">EXPLORE</span>
+      <a href={withBase('/naive/')}>Naive</a>
+      <a href={withBase('/intermediate/')}>Intermediate</a>
+      <a href={withBase('/advanced/')}>
+        Advanced <small class="local-tag">Local only</small>
+      </a>
+    </div>
+    <div>
+      <span class="eyebrow">THE EVIDENCE</span>
+      <a href={withBase('/compare/')}>Compare levels</a>
+      <a href={withBase('/results/')}>Evaluation results</a>
+      <span class="text-body mt-3">Credits in the project documentation</span>
+    </div>
+    <div>
+      <span class="eyebrow">DETAILS</span>
+      <a href={withBase('/privacy/')}>Privacy · draft</a>
+      <a href={withBase('/cookies/')}>Cookies · draft</a>
+      <a
+        href={site.repository}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="repo-link"
+      >
+        <GithubLogo width={16} height={16} aria-hidden="true" />
+        GitHub
+      </a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>An open-source RAG study by Shahid Malek.</p>
+    <p>Built to inspect, compare and learn.</p>
+  </div>
+</footer>
+<style>
+  footer {
+    padding-block: 72px 28px;
+    border-top: 1px solid var(--color-border);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-grid > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-name {
+    font-size: 21px;
+    font-weight: 600;
+    min-height: 44px;
+    text-decoration: none;
+  }
+  .footer-grid p {
+    font-size: 14px;
+    color: var(--color-muted-foreground);
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-muted-foreground);
+  }
+  .footer-grid a:not(.footer-name) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .footer-grid a:hover {
+    text-decoration: underline;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 48px;
+    padding-top: 24px;
+    font-size: 12px;
+    color: var(--color-muted-foreground);
+  }
+  @media (max-width: 767px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 16px;
+    }
+    .footer-grid > div:first-child {
+      grid-column: 1/-1;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import Section from '@/components/Section.astro';
+import Layout from '@/layouts/Layout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Stats2 from '@/components/ui/stats-2';
+import LevelTabs from '@/components/LevelTabs';
+import { levels, tradeoffs, levelName } from '@/data/levels';
+import { levelStats, evaluationNote } from '@/data/evaluation';
+import { results, percent } from '@/data/results';
+import { withBase } from '@/lib/paths';
+const ids = ['L1', 'L2', 'L3'] as const;
+const metrics = [
+  'hit@1',
+  'hit@3',
+  'hit@5',
+  'hit@10',
+  'mrr@5',
+  'recall@5',
+  'location_hit@5',
+] as const;
+---
+
+<Layout
+  title="Compare Naive, Intermediate and Advanced"
+  description="Compare the RAG-Ladder implementations, frozen retrieval metrics and trade-offs. The saved evaluation covers 184 answerable questions and excludes generated answers."
+>
+  <PageHeader
+    eyebrow="THE COMPARISON"
+    title="What does another level add?"
+    description="Inspect the implementation and the saved evidence together. A higher overall mean does not mean every question type improves."
+  />
+  <Section eyebrow="THE LADDER" class="page-section">
+    <Stats2 stats={levelStats} />
+    <p class="mt-6 max-w-3xl text-body text-muted-foreground">
+      {evaluationNote}
+    </p>
+    <div class="mt-10">
+      <LevelTabs levels={levels} client:visible />
+    </div>
+  </Section>
+  <Section eyebrow="THE SAVED MEASUREMENTS" class="page-section">
+    <h2 class="mb-6 text-4xl">The saved measurements.</h2>
+    <div
+      class="table-wrap"
+      role="region"
+      aria-label="Retrieval metric comparison"
+      tabindex="0"
+    >
+      <table>
+        <caption class="sr-only">
+          Frozen runtime processing-off retrieval. Quality averages exclude the
+          16 unanswerable questions.
+        </caption>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            {ids.map((id) => (
+              <th>{levelName(id)}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {metrics.map((metric) => (
+            <tr>
+              <th scope="row">{metric}</th>
+              {ids.map((id) => (
+                <td class="statistic">
+                  {metric === 'mrr@5'
+                    ? results.levels[id].overall.metrics[metric].toFixed(4)
+                    : percent(results.levels[id].overall.metrics[metric])}
+                </td>
+              ))}
+            </tr>
+          ))}
+          <tr>
+            <th scope="row">Evidence coverage@5</th>
+            {ids.map((id) => (
+              <td>
+                {percent(results.levels[id].overall.evidence_coverage_at_5)}
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-5 text-body text-muted-foreground">
+      Hit@5 requires the evaluator’s complete evidence rule. Recall@5 is keyword
+      coverage; evidence coverage credits complete required entries. MRR@5 is
+      the saved evaluator’s reciprocal-rank metric. Advanced Hit@10 is not
+      measured because the returned output is capped at five parents.
+    </p>
+  </Section>
+  <Section eyebrow="TRADE-OFFS YOU CAN INSPECT" class="page-section">
+    <h2 class="mb-6 text-4xl">Trade-offs you can inspect.</h2>
+    <div
+      class="table-wrap"
+      role="region"
+      aria-label="Implementation trade-offs"
+      tabindex="0"
+    >
+      <table class="min-w-[760px]">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            {ids.map((id) => (
+              <th>{levelName(id)}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {tradeoffs.map((row) => (
+            <tr>
+              <th scope="row">{row[0]}</th>
+              {row.slice(1).map((cell) => (
+                <td>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="pill pill-primary" href={withBase('/results/')}>
+        Read the evaluation
+      </a>
+      <a class="pill pill-secondary" href={withBase('/naive/')}>
+        Naive
+      </a>
+    </div>
+  </Section>
+</Layout>

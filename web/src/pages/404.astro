@@ -1,0 +1,15 @@
+---
+import Section from '@/components/Section.astro';
+import Layout from '@/layouts/Layout.astro';
+import ErrorPage from '@/components/ui/error-3';
+---
+
+<Layout
+  title="Page not found"
+  description="This address is not in the RAG-Ladder notes. Return home, try a hosted RAG level, or visit the repository."
+  noindex
+>
+  <Section eyebrow="PAGE NOT FOUND" hero>
+    <ErrorPage />
+  </Section>
+</Layout>

@@ -1,0 +1,17 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import PipelineExplorer from '@/components/PipelineExplorer.astro';
+---
+
+<Layout
+  title="Pipeline · Explore each stage"
+  description="Choose Naive, Intermediate or Advanced and follow each pipeline stage, and inspect the tools used."
+>
+  <PageHeader
+    eyebrow="FROM NOTES TO EVIDENCE"
+    title="Explore the pipelines."
+    description="Pick Naive, Intermediate or Advanced and follow each stage."
+  />
+  <PipelineExplorer />
+</Layout>

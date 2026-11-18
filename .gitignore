@@ -22,8 +22,7 @@
 /test_request_protection.py
 /test_session_isolation.py
 /test_watchdog.py
-/HOSTING.md
-
+/DESIGN-2.md
 # Reopen only the directory needed for approved public results.
 !/results/
 
@@ -72,3 +71,20 @@
 !/session_store.py
 !/sessions.py
 !/watchdog.py
+
+# Requested static frontend; local secrets and build artifacts stay ignored.
+!/web/
+!/web/**
+web/reports/
+web/porgress.md
+web/DESIGN-2.md
+web/AGENTS.md
+web/REVISION-*-REPORT.md
+web/STAGE-C-REPORT.md
+web/public/data/questions.json
+/web/node_modules/
+/web/dist/
+/web/.astro/
+/web/.env
+/web/.env.*
+!/web/.env.example

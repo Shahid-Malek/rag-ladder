@@ -1,0 +1,30 @@
+---
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  eyebrow: string;
+  hero?: boolean;
+  contained?: boolean;
+}
+const {
+  eyebrow,
+  hero = false,
+  contained = true,
+  class: className,
+  ...attributes
+} = Astro.props;
+---
+
+<section
+  class:list={['section-block', className]}
+  data-section
+  data-section-hero={hero || undefined}
+  {...attributes}
+>
+  <div class="section-line" aria-hidden="true"></div>
+  <div class:list={['section-content', { container: contained }]}>
+    <div class="section-marker">
+      <span class="section-number" aria-hidden="true"></span>
+      <p class="eyebrow">{eyebrow}</p>
+    </div>
+    <slot />
+  </div>
+</section>

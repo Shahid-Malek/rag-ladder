@@ -187,14 +187,13 @@ def write_trace(record: dict) -> None:
 
 def error_response(request: Request, status: int, code: str, detail):
     request.state.trace["error_code"] = code
-    return JSONResponse(status_code=status, content=dict(error_code=code, detail=detail))
+    stage = "answer" if request.url.path == "/ask" else "upload" if request.url.path.startswith("/ingest") else "session"
+    return JSONResponse(status_code=status, content=dict(code=code, error_code=code, stage=stage, detail=detail))
 
 
 @app.exception_handler(sessions.SessionError)
 async def session_error(request: Request, exc: sessions.SessionError):
     response = error_response(request, exc.status, exc.code, exc.message)
-    if exc.rule_id:
-        response = JSONResponse(status_code=exc.status, content=dict(error_code=exc.code, detail=exc.message, rule_id=exc.rule_id))
     if exc.status == 429:
         response.headers["Retry-After"] = str(config.CAPACITY_RETRY_AFTER_SECONDS)
     return response
@@ -204,7 +203,7 @@ async def session_error(request: Request, exc: sessions.SessionError):
 async def http_error(request: Request, exc: HTTPException):
     codes = {401: "invalid_token", 413: "file_too_large", 415: "unsupported_type", 422: "validation_failed",
              429: "rate_limited", 503: "infrastructure_unavailable"}
-    response = error_response(request, exc.status_code, codes.get(exc.status_code, "validation_failed"), exc.detail)
+    response = error_response(request, exc.status_code, codes.get(exc.status_code, "server_failure" if exc.status_code >= 500 else "validation_failed"), exc.detail)
     response.headers.update(exc.headers or {})
     return response
 
@@ -257,7 +256,7 @@ class RequestProtection:
             request.state.trace["error_code"] = error
             if code == 429:
                 headers["Retry-After"] = str(config.CAPACITY_RETRY_AFTER_SECONDS)
-            await JSONResponse(status_code=code, content=dict(error_code=error, detail=detail), headers=headers)(scope, receive, send)
+            await JSONResponse(status_code=code, content=dict(code=error, error_code=error, stage="request", detail=detail), headers=headers)(scope, receive, send)
 
         async def limited_receive():
             nonlocal received, exceeded
@@ -557,7 +556,7 @@ def session_ingest(request: Request, file: UploadFile):
 def ingest_status(request: Request, response: Response, job_id: str):
     row = require_session(request)
     job = sessions.get_job(job_id, row["id"])
-    result = dict(job, session=sessions.quota(sessions.get(row["id"])))
+    result = dict(job, code=job.get("error_code"), session=sessions.quota(sessions.get(row["id"])))
     return JSONResponse(status_code=job.get("error_status") or 200, content=result)
 
 

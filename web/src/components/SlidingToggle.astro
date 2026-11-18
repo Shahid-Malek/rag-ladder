@@ -1,0 +1,18 @@
+---
+interface Props {
+  label: string;
+  class?: string;
+}
+const { label, class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={['sliding-toggle', className]}
+  data-sliding-toggle
+  role="group"
+  aria-label={label}
+>
+  <span class="sliding-ghost" aria-hidden="true" />
+  <span class="sliding-indicator" aria-hidden="true"></span>
+  <slot />
+</div>

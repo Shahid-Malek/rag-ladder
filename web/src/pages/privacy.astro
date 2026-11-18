@@ -1,0 +1,91 @@
+---
+import Section from '@/components/Section.astro';
+import Layout from '@/layouts/Layout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { dataNotice } from '@/lib/api';
+import { withBase } from '@/lib/paths';
+---
+
+<Layout
+  title="Privacy notice · draft for owner review"
+  description="Temporary note processing, external AI services, browser session storage and deletion limits."
+>
+  <PageHeader
+    eyebrow="LEGAL / DRAFT FOR OWNER REVIEW"
+    title="What happens to your notes."
+    description="The owner must verify service providers, retention and a contact before publishing this as a final notice."
+  />
+  <Section eyebrow="PRIVACY NOTICE" class="page-section prose">
+    <div class="notice">
+      <p>
+        <strong>Draft.</strong> Owner contact pending. Operator identity and
+        final service settings have not been supplied.
+      </p>
+    </div>
+    <h2>Before you upload</h2>
+    <p>{dataNotice}</p>
+    <p>
+      You must accept the data notice and complete a security check before a
+      live session starts. The check loads after you accept. Files are sent only
+      when you choose “Upload queued documents”.
+    </p>
+    <h2>What stays in your browser</h2>
+    <p>
+      Selected files and the displayed conversation stay in page memory. They
+      are not saved in persistent browser storage. Temporary tab storage saves
+      session access, limits, expiry and pending upload progress so a live
+      session can resume after reload. The displayed conversation is not
+      restored; eligible Intermediate conversation history may remain on the
+      server until cleanup.
+    </p>
+    <h2>Operational records</h2>
+    <p>
+      Application logs contain operational metadata, not your notes, questions,
+      answers, filenames or credentials. Application metadata retention is
+      configured for 30 days. Hosting services may keep separate records under
+      the owner’s settings.
+    </p>
+    <h2>Ending a session and deletion</h2>
+    <p>
+      Use “End session” to request deletion of live files, extracted note data
+      and conversation history. Session expiry also requests cleanup. Closing a
+      tab or clearing browser storage does not immediately delete server data.
+      Cleanup can be delayed; provider records and database backups may remain
+      longer.
+    </p>
+    <h2>External services</h2>
+    <p>
+      Live use involves hosting, security-check, storage and AI service
+      providers. They receive the data needed to provide those services. Some
+      free AI services may retain prompts or use them for training. The owner
+      must confirm the final providers and their terms before live publication.
+    </p>
+    <p>
+      The security-check provider’s{' '}
+      <a
+        href="https://www.cloudflare.com/turnstile-privacy-policy/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        privacy addendum
+      </a>{' '}
+      explains its processing. Opening the repository link takes you to GitHub.
+      Your browser requests the repository's public star count from the GitHub
+      API (api.github.com), so GitHub receives that request.
+    </p>
+    <h2>Local mock mode</h2>
+    <p>
+      In the labeled local mock, selected file contents are not read, uploaded,
+      indexed or sent to a model. Only the file name, type and size are
+      validated. No measured timings or answers are simulated. Mock state resets
+      on reload.
+    </p>
+    <h2>Cookies and contact</h2>
+    <p>
+      No advertising, analytics or session replay is enabled. Read the{' '}
+      <a href={withBase('/cookies/')}>storage and cookies draft</a> for
+      browser-storage details. Owner contact pending; a real contact is required
+      before final publication.
+    </p>
+  </Section>
+</Layout>

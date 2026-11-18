@@ -1,0 +1,12 @@
+---
+const {
+  href,
+  class: className = 'pill pill-secondary',
+  ...props
+} = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag href={href} class:list={['animated-button', className]} {...props}>
+  <slot />
+</Tag>

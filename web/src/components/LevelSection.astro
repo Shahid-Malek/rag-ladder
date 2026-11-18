@@ -1,0 +1,18 @@
+---
+import Section from './Section.astro';
+import PartsSelector from './PartsSelector';
+import { levelStats } from '@/data/evaluation';
+---
+
+<Section
+  eyebrow="THREE APPROACHES, STEP BY STEP"
+  class="level-ideas"
+  id="level-ideas"
+>
+  <h2 class="text-display mt-6">
+    Follow the idea.
+    <br />
+    Inspect the evidence.
+  </h2>
+  <PartsSelector stats={levelStats} client:visible />
+</Section>

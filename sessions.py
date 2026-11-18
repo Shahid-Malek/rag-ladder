@@ -293,7 +293,7 @@ def get_job(job_id: str, session_id: str) -> dict:
         row = conn.execute("SELECT * FROM ingest_jobs WHERE id=%s AND session_id=%s", (job_id, session_id)).fetchone()
     if not row:
         raise SessionError(401, "invalid_token", "Job is unavailable to this session")
-    return {key: row[key] for key in ("status", "duplicate", "chunks", "flagged_chunks", "error_code", "error_status", "error_detail")}
+    return {key: row[key] for key in ("status", "stage", "duplicate", "chunks", "flagged_chunks", "error_code", "error_status", "error_detail")}
 
 
 def progress(job_id: str, stage: str) -> None:
@@ -315,7 +315,7 @@ def finish_job(job_id: str, result: dict | None = None, error_code: str | None =
              job["bytes"] if not error_code and not result.get("duplicate") else 0, job["session_id"]))
         conn.execute("""UPDATE ingest_jobs SET status=%s,stage=%s,duplicate=%s,chunks=%s,
             flagged_chunks=%s,error_code=%s,error_status=%s,error_detail=%s,reserved=false,updated_at=now(),finished_at=now() WHERE id=%s""",
-            ("failed" if error_code else "done", "failed" if error_code else "done",
+            ("failed" if error_code else "done", job["stage"] if error_code else "done",
              result.get("duplicate", job["duplicate"]), result.get("chunks", 0), result.get("flagged_chunks", 0), error_code, error_status, error_detail, job_id))
 
 

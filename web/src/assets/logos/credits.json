@@ -1,0 +1,82 @@
+{
+  "github": {
+    "source": "https://thesvg.org/icons/github/mono.svg",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "license": "CC0-1.0",
+    "guidelines": "https://brand.github.com/"
+  },
+  "fastapi": {
+    "source": "https://thesvg.org/icons/fastapi/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://fastapi.tiangolo.com/"
+  },
+  "postgresql": {
+    "source": "https://thesvg.org/icons/postgresql/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://www.postgresql.org/about/policies/trademarks/"
+  },
+  "langgraph": {
+    "source": "https://thesvg.org/icons/langgraph/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://www.langchain.com/langgraph"
+  },
+  "llamaindex": {
+    "source": "https://thesvg.org/icons/llamaindex/mono.svg",
+    "license": "MIT",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://llamaindex.ai"
+  },
+  "cloudflare": {
+    "source": "https://thesvg.org/icons/cloudflare/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://www.cloudflare.com/trademark/"
+  },
+  "python": {
+    "source": "https://thesvg.org/icons/python/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://www.python.org/"
+  },
+  "astro": {
+    "source": "https://thesvg.org/icons/astro/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://astro.build"
+  },
+  "oracle": {
+    "source": "https://thesvg.org/icons/oracle/icon.svg",
+    "license": "Fair Use",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://www.oracle.com",
+    "adaptation": "ViewBox cropped to the compact mark; fill converted to currentColor."
+  },
+  "groq": {
+    "source": "https://thesvg.org/icons/groq/default.svg",
+    "license": "MIT",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://groq.com/",
+    "adaptation": "Background square removed; foreground converted to currentColor."
+  },
+  "openrouter": {
+    "source": "https://thesvg.org/icons/openrouter/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://openrouter.ai/"
+  },
+  "qdrant": {
+    "source": "https://thesvg.org/icons/qdrant/default.svg",
+    "license": "MIT",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://qdrant.tech/brand-resources/"
+  },
+  "numpy": {
+    "source": "https://thesvg.org/icons/numpy/mono.svg",
+    "license": "CC0-1.0",
+    "manifest": "https://github.com/glincker/thesvg/blob/main/src/data/icons.json",
+    "guidelines": "https://github.com/numpy/numpy/blob/main/branding/logo/logoguidelines.md"
+  }
+}

@@ -1,0 +1,47 @@
+---
+import Section from '@/components/Section.astro';
+import Layout from '@/layouts/Layout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import ResultsWindow from '@/components/ResultsWindow';
+import { levels } from '@/data/levels';
+import { results } from '@/data/results';
+const evidence = levels.map((level) => {
+  const key = level.id.toUpperCase() as 'L1' | 'L2' | 'L3';
+  const saved = results.levels[key];
+  const interval = results.significance.estimates.find(
+    (item) => item.level === key && item.group_by === 'overall',
+  )?.hit_at_5.wilson_95;
+  return {
+    slug: level.slug,
+    name: level.name,
+    metric: saved.overall.metrics['hit@5'],
+    interval: interval
+      ? ([interval.low, interval.high] as [number, number])
+      : null,
+    breakdown: Object.entries(saved.by_question_type).map(([type, group]) => ({
+      type,
+      n: group.n_answerable,
+      coverage: group.evidence_coverage_at_5,
+    })),
+  };
+});
+---
+
+<Layout
+  title="Saved evidence · Results"
+  description="Choose Naive, Intermediate and Advanced to inspect their saved retrieval evidence and its limits."
+>
+  <PageHeader
+    eyebrow="THE SAVED EVIDENCE"
+    title="Open a window into the results."
+    description="37 documents. 200 questions. Select the levels you want to inspect together. These results describe frozen retrieval with processing off."
+  />
+  <Section eyebrow="THE SAVED EVIDENCE" class="page-section">
+    <ResultsWindow evidence={evidence} client:visible />
+    <noscript>
+      <p class="notice">
+        Enable JavaScript to select levels and inspect their saved evidence.
+      </p>
+    </noscript>
+  </Section>
+</Layout>

@@ -1,0 +1,101 @@
+---
+import Section from '@/components/Section.astro';
+import Layout from '@/layouts/Layout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import LocalNav from '@/components/LocalNav.astro';
+import PipelineExplorer from '@/components/PipelineExplorer.astro';
+import SafeTryDemo from '@/components/SafeTryDemo';
+import { levels, type LevelInfo } from '@/data/levels';
+import { site } from '@/data/site';
+export function getStaticPaths() {
+  return levels.map((info) => ({
+    params: { level: info.slug },
+    props: { info },
+  }));
+}
+const { info } = Astro.props as { info: LevelInfo };
+---
+
+<Layout
+  title={`${info.name} · ${info.id === 'l3' ? 'Run locally' : 'Try it'}`}
+  description={info.summary}
+>
+  <PageHeader
+    eyebrow={info.name.toUpperCase()}
+    title={`${info.name}, with your notes.`}
+    description={info.summary}
+  />
+  <div data-level-page data-level-name={info.name}>
+    <script is:inline data-astro-rerun>
+      document.currentScript.parentElement.dataset.levelView =
+        new URLSearchParams(location.search).get('view') === 'how-it-works'
+          ? 'how-it-works'
+          : 'try';
+    </script>
+    <div class="container">
+      <LocalNav name={info.name} slug={info.slug} local={info.id === 'l3'} />
+    </div>
+    <div class="level-panels mt-8">
+      <Section
+        eyebrow={info.name.toUpperCase()}
+        data-view-panel="try"
+        aria-label={info.id === 'l3' ? 'Run locally' : 'Try it'}
+      >
+        {info.id !== 'l3' ? (
+          <SafeTryDemo level={info.id === 'l1' ? 1 : 2} client:visible />
+        ) : (
+          <div class="panel prose pb-12">
+            <span class="local-tag">Local only</span>
+            <h2 class="mt-6 text-3xl">Run Advanced locally.</h2>
+            <p class="mt-5">
+              Advanced uses the private local path. It has no hosted demo
+              session.
+            </p>
+            <p class="mt-5">
+              <strong>Download pending.</strong> No verified downloadable
+              release is supplied. Ask the owner for access and the private
+              setup instructions.
+            </p>
+            <p class="mt-5">
+              Owner contact pending. Local requirements and runtime performance
+              have not been verified.
+            </p>
+            <a
+              class="pill pill-secondary mt-6"
+              href={site.repository}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open the repository{' '}
+              <small class="local-tag">Local only</small>
+            </a>
+          </div>
+        )}
+      </Section>
+      <div data-view-panel="how-it-works" aria-label="How it works" hidden>
+        <PipelineExplorer info={info} />
+      </div>
+    </div>
+    <script is:inline data-astro-rerun>
+      {
+        const root = document.currentScript.parentElement;
+        const view = root.dataset.levelView;
+        root.querySelectorAll('[data-view-panel]').forEach((panel) => {
+          panel.hidden = panel.dataset.viewPanel !== view;
+        });
+        root.querySelectorAll('[data-view-link]').forEach((link) => {
+          if (link.dataset.viewLink === view)
+            link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        });
+      }
+    </script>
+  </div>
+  <noscript>
+    <div class="container page-section">
+      <h2 class="text-3xl">{info.name} · How it works</h2>
+      <PipelineExplorer info={info} />
+      <p>The interactive demo needs JavaScript.</p>
+    </div>
+  </noscript>
+</Layout>

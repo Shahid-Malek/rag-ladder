@@ -1,0 +1,54 @@
+---
+import Section from './Section.astro';
+import Python from '@/assets/logos/python.svg';
+import AstroLogo from '@/assets/logos/astro.svg';
+import Oracle from '@/assets/logos/oracle.svg';
+import FastAPI from '@/assets/logos/fastapi.svg';
+import Postgres from '@/assets/logos/postgresql.svg';
+import LangGraph from '@/assets/logos/langgraph.svg';
+import LlamaIndex from '@/assets/logos/llamaindex.svg';
+import Cloudflare from '@/assets/logos/cloudflare.svg';
+const technologies = [
+  { name: 'Python', Logo: Python },
+  { name: 'FastAPI', Logo: FastAPI },
+  { name: 'LangGraph', Logo: LangGraph },
+  { name: 'LlamaIndex', Logo: LlamaIndex },
+  { name: 'PostgreSQL', Logo: Postgres },
+  { name: 'Astro', Logo: AstroLogo },
+  { name: 'Cloudflare', Logo: Cloudflare },
+  { name: 'Oracle', Logo: Oracle },
+];
+---
+
+<Section
+  eyebrow="BUILT FROM INSPECTABLE PARTS"
+  class="tech-banner"
+  id="parts"
+  data-visibility
+  contained={false}
+>
+  <div
+    class="marquee tech-marquee"
+    role="region"
+    aria-label="Technology stack"
+    tabindex="0"
+  >
+    <div class="marquee-track">
+      {[0, 1].map((copy) => (
+        <div class="marquee-copy" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {technologies.map(({ name, Logo }) => (
+            <div class="tech-item" data-brand={name.toLowerCase()}>
+              <Logo
+                fill="currentColor"
+                width={30}
+                height={30}
+                aria-hidden="true"
+              />
+              <span>{name}</span>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>

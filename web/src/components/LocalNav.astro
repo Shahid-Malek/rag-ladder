@@ -1,0 +1,39 @@
+---
+import { withBase } from '@/lib/paths';
+import SlidingToggle from './SlidingToggle.astro';
+import AnimatedButton from './AnimatedButton.astro';
+interface Props {
+  name: string;
+  slug: string;
+  local?: boolean;
+}
+const { name, slug, local = false } = Astro.props;
+---
+
+<nav class="local-nav" aria-label={`${name} navigation`}>
+  <AnimatedButton
+    href={withBase('/compare/')}
+    class="back-link pill"
+    data-back-compare
+  >
+    ← Compare
+  </AnimatedButton>
+  <SlidingToggle label={`${name} view`}>
+    <a
+      data-option
+      data-view-link="try"
+      href={withBase(`/${slug}/`)}
+      aria-current="page"
+    >
+      {local ? 'Run locally' : 'Try it'}
+      {local && <small class="local-tag">Local only</small>}
+    </a>
+    <a
+      data-option
+      data-view-link="how-it-works"
+      href={withBase(`/${slug}/?view=how-it-works`)}
+    >
+      How it works
+    </a>
+  </SlidingToggle>
+</nav>

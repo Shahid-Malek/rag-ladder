@@ -1,0 +1,82 @@
+---
+import Section from './Section.astro';
+import Pipeline from './Pipeline.astro';
+import LevelChoices from './LevelChoices';
+import { levels, type LevelInfo } from '@/data/levels';
+import { withBase } from '@/lib/paths';
+interface Props {
+  info?: LevelInfo;
+}
+const { info } = Astro.props;
+const choices = info ? [info] : levels;
+const contentId = info
+  ? `${info.slug}-pipeline-explorer`
+  : 'pipeline-explorer-content';
+---
+
+<div
+  class="pipeline-explorer"
+  data-pipeline-explorer
+  data-fixed-level={info?.slug}
+>
+  {!info && (
+    <Section eyebrow="CHOOSE A PIPELINE">
+      <LevelChoices
+        options={levels}
+        selected={[]}
+        label="Choose a pipeline"
+        controls={contentId}
+        caption="Follow each stage"
+      />
+      <p class="results-empty mt-8" data-explorer-empty role="status">
+        Choose a pipeline to explore.
+      </p>
+    </Section>
+  )}
+  <div id={contentId} class="explorer-content" aria-busy="false">
+    <div
+      class="pipeline-skeleton panel"
+      data-explorer-loading
+      hidden
+      role="status"
+      aria-label="Loading pipeline stages"
+    >
+      <p>Loading pipeline stages…</p>
+      <div class="skeleton-node mt-6"></div>
+      <div class="skeleton-node mt-4"></div>
+      <div class="skeleton-node mt-4"></div>
+    </div>
+    {choices.map((level) => (
+      <div
+        data-explorer-panel={level.slug}
+        aria-label={`${level.name} pipeline`}
+        hidden={!info}
+      >
+        {level.slug === 'advanced' && (
+          <div class="notice container mt-8">
+            <p>
+              <strong>Local only.</strong> Advanced uses the private local path.{' '}
+              <a class="underline" href={withBase('/advanced/')}>
+                Run Advanced locally
+              </a>
+            </p>
+          </div>
+        )}
+        <Pipeline info={level} />
+      </div>
+    ))}
+  </div>
+  {!info && (
+    <noscript>
+      <p class="notice">
+        The selection window needs JavaScript.{' '}
+        <a href={withBase('/naive/?view=how-it-works')}>Naive</a>,{' '}
+        <a href={withBase('/intermediate/?view=how-it-works')}>Intermediate</a>,{' '}
+        <a href={withBase('/advanced/?view=how-it-works')}>
+          Advanced · Local only
+        </a>
+        .
+      </p>
+    </noscript>
+  )}
+</div>
