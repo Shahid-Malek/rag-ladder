@@ -68,7 +68,7 @@ export default defineConfig({
             "frame-ancestors 'none'",
           ].join('; ');
           const headers = [
-            `/*\n  Content-Security-Policy: ${policy}\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()`,
+            `/*\n  Content-Security-Policy: ${policy}\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Strict-Transport-Security: max-age=15552000`,
             `/_astro/*\n  Cache-Control: public, max-age=31536000, immutable`,
             ...htmlPaths.map(
               (path) =>

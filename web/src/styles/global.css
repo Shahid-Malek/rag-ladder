@@ -952,7 +952,7 @@ pre {
 }
 .result-choice {
   --pad: 24px;
-  --r-inner: 8px;
+  --r-inner: 14px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -961,29 +961,29 @@ pre {
   height: auto;
   min-height: 180px;
   padding: var(--pad);
+  border: 1px solid var(--color-border);
   border-radius: calc(var(--r-inner) + var(--pad));
+  background: var(--color-card);
+  color: var(--color-foreground);
   white-space: normal;
   text-align: left;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
+  transition:
+    transform 200ms ease-out,
+    background-color 200ms,
+    border-color 200ms,
+    box-shadow 200ms;
 }
-.result-choice::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--color-accent);
-  z-index: -1;
-  transform: translateY(100%);
-  transition: transform 300ms ease-out;
+/* Same lift and blue border as the hero "Explore the pipelines" card. */
+.result-choice:is(:hover, :focus-visible) {
+  border-color: var(--color-primary);
+  background: var(--color-card);
+  color: var(--color-foreground);
+  transform: translateY(-2px);
 }
 .result-choice[aria-pressed='true'] {
   border-color: var(--color-primary);
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-.result-choice[aria-pressed='true']::before {
-  transform: translateY(0);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+  background: var(--color-accent);
 }
 .result-choice-bottom {
   display: flex;
@@ -993,18 +993,39 @@ pre {
   font-size: 12px;
   font-weight: 400;
 }
+/* Checkbox: empty when unselected, filled blue with a tick when selected. */
 .selection-check {
   display: inline-grid;
   place-items: center;
+  flex: none;
   width: 26px;
   height: 26px;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  color: var(--color-primary);
+  border: 1px solid var(--color-input);
+  border-radius: 8px;
+  background: var(--color-card);
+  color: var(--color-primary-foreground);
+  transition:
+    background-color 200ms,
+    border-color 200ms;
+}
+.result-choice:is(:hover, :focus-visible) .selection-check {
+  border-color: var(--color-primary);
 }
 .result-choice[aria-pressed='true'] .selection-check {
   border-color: var(--color-primary);
-  animation: text-in 250ms ease-out;
+  background: var(--color-primary);
+}
+.result-choice[aria-pressed='false'] .selection-check svg {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .result-choice,
+  .selection-check {
+    transition: none;
+  }
+  .result-choice:is(:hover, :focus-visible) {
+    transform: none;
+  }
 }
 .results-panels {
   display: grid;
@@ -1164,9 +1185,6 @@ pre {
 .evidence-panel {
   --pad: 24px;
   --r-inner: 14px;
-}
-.selection-check {
-  border-radius: 8px;
 }
 .sliding-toggle .local-tag {
   border-radius: 7px;
@@ -1362,13 +1380,6 @@ html[data-tab-hidden] .marquee-track,
 }
 .stat-card:is(:hover, :focus-visible) .stat-accent {
   transform: scaleX(1);
-}
-.result-choice[aria-pressed='false'] .selection-check svg {
-  visibility: hidden;
-}
-.result-choice[aria-pressed='true'] .selection-check svg {
-  visibility: visible;
-  animation: text-in 200ms ease-out;
 }
 /* Keep changing copy legible throughout its slide. */
 .parts-swap {

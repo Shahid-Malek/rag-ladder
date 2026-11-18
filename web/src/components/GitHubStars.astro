@@ -105,18 +105,15 @@ const fallback = await getBuildStarCount();
       .querySelectorAll<HTMLElement>('[data-stars]')
       .forEach((element) => {
         element.querySelector('[data-stars-skeleton]')?.remove();
-        const value = element.querySelector<HTMLElement>('[data-stars-value]');
-        if (value) {
-          value.textContent =
-            countValue === null ? '—' : countValue.toLocaleString('en');
-          value.hidden = false;
-          if (countValue === null) value.setAttribute('aria-hidden', 'true');
-          value.title =
-            countValue === null
-              ? 'GitHub star count not available'
-              : 'GitHub stars';
-        }
         element.setAttribute('aria-busy', 'false');
+        // API failure or rate limit (403): show a plain Star button, no number.
+        element.hidden = countValue === null;
+        const value = element.querySelector<HTMLElement>('[data-stars-value]');
+        if (value && countValue !== null) {
+          value.textContent = countValue.toLocaleString('en');
+          value.hidden = false;
+          value.title = 'GitHub stars';
+        }
       });
   }
   document.addEventListener('astro:page-load', initializeStars);

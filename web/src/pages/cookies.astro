@@ -2,137 +2,63 @@
 import Section from '@/components/Section.astro';
 import Layout from '@/layouts/Layout.astro';
 import PageHeader from '@/components/PageHeader.astro';
-import { missingData } from '@/data/site';
+import { site } from '@/data/site';
 import { withBase } from '@/lib/paths';
 ---
 
 <Layout
-  title="Cookies and browser storage · draft"
-  description="Draft audit of RAG-Ladder’s cookies, sessionStorage, localStorage, GitHub star-count cache and conditional Cloudflare Turnstile requests. No analytics is enabled."
+  title="Cookies and browser storage"
+  description="RAG-Ladder sets no cookies. It keeps one item in localStorage: a cached GitHub star count."
 >
   <PageHeader
-    eyebrow="LEGAL / DRAFT FOR OWNER REVIEW"
-    title="A small amount of session storage."
-    description="The implementation uses tab-scoped credentials to resume a live demo. It has no advertising or analytics storage. The owner must verify the final Cloudflare deployment."
+    eyebrow="LEGAL / COOKIES"
+    title="No cookies. One stored item."
+    description="Everything this site keeps in your browser is listed below."
   />
-  <Section eyebrow="STORAGE NOTICE" class="page-section prose">
-    <div class="notice">
-      <p>
-        <strong>Draft for owner review.</strong> {missingData.contact.label}.
-        This is a source-code audit, not a claim about uninspected deployment
-        settings.
-      </p>
-    </div>
-    <h2>Application storage audit</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Storage</th>
-            <th>Current use</th>
-            <th>Lifetime</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Application cookies</td>
-            <td>
-              None. Session access is sent only with requests to the demo
-              service.
-            </td>
-            <td>Not applicable</td>
-          </tr>
-          <tr>
-            <td>sessionStorage</td>
-            <td>
-              Naive or Intermediate session access and metadata, returned
-              limits, expiry and optional pending job ID. No file contents or
-              chat transcript.
-            </td>
-            <td>
-              This tab’s session, or until the app clears an
-              ended/invalid/expired session.
-            </td>
-          </tr>
-          <tr>
-            <td>localStorage</td>
-            <td>
-              <code>rag-ladder:github-stars:v1</code>: the repository’s public
-              star count and the time it was fetched.
-            </td>
-            <td>
-              Reused for one hour, then refreshed; kept until you clear site
-              data.
-            </td>
-          </tr>
-          <tr>
-            <td>Page memory</td>
-            <td>Selected files, visible questions/answers and mock state.</td>
-            <td>
-              Until reload, page navigation or session end clears the interface.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <h2>Cloudflare Turnstile</h2>
+  <Section eyebrow="COOKIES AND STORAGE" class="page-section prose">
+    <p class="text-muted-foreground">Last updated: 18 November 2026</p>
+    <h2>Cookies</h2>
+    <p>The site sets no cookies.</p>
+    <h2>Browser storage</h2>
     <p>
-      The live try pages load Cloudflare’s challenge script from
-      challenges.cloudflare.com only after you accept the data notice. It can
-      load a third-party iframe and make challenge-related requests.
-      Verification requires the challenge response and network information. Mock
-      mode does not load Turnstile.
+      The site keeps one item in localStorage and nothing in sessionStorage. It
+      works the same if you clear or block storage.
     </p>
+    <ul>
+      <li>
+        <strong>Key:</strong> <code>rag-ladder:github-stars:v1</code>
+      </li>
+      <li>
+        <strong>Purpose:</strong> the project’s public GitHub star count and
+        when it was fetched, so the count is not requested on every page.
+      </li>
+      <li>
+        <strong>Lifetime:</strong> reused for up to one hour, then refreshed.
+        Kept until you clear site data.
+      </li>
+    </ul>
+    <h2>No tracking</h2>
+    <p>The site uses no advertising, analytics or session replay.</p>
+    <h2>More</h2>
     <p>
-      Turnstile itself does not require a pre-clearance cookie to issue a token.
-      A separately configured Cloudflare pre-clearance or other edge security
-      feature may set cookies. This frontend does not enable pre-clearance; the
-      owner must inspect actual edge settings and browser behavior before
-      finalizing this notice. See{' '}
-      <a
-        href="https://developers.cloudflare.com/cloudflare-challenges/concepts/clearance/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="underline"
-      >
-        Cloudflare’s clearance documentation
+      Read the{' '}
+      <a href={withBase('/privacy/')} class="underline">
+        privacy notice
+      </a>
+      . Questions:{' '}
+      <a href={`mailto:${site.contact}`} class="underline">
+        {site.contact}
       </a>{' '}
-      and{' '}
+      or{' '}
       <a
-        href="https://www.cloudflare.com/turnstile-privacy-policy/"
+        href={site.issues}
         target="_blank"
         rel="noopener noreferrer"
         class="underline"
       >
-        privacy addendum
+        GitHub Issues
       </a>
       .
-    </p>
-    <h2>GitHub</h2>
-    <p>
-      The header links to the public repository and shows its star count. Your
-      browser requests the count from the GitHub API (api.github.com) and stores
-      only the number and a timestamp in localStorage, reused for one hour. No
-      GitHub access token is included in the frontend.
-    </p>
-    <h2>No analytics or consent banner</h2>
-    <p>
-      No analytics, advertising, personalization or session-replay service is
-      enabled. The current app-owned persistent storage is used only to keep the
-      live demo session accessible within its tab. There is no consent banner in
-      this implementation. Adding analytics or other storage requires a new
-      owner review.
-    </p>
-    <h2>Clearing storage</h2>
-    <p>
-      “End session” requests live-data cleanup and removes the saved session
-      record once confirmed. Clearing browser storage alone loses your local
-      credentials and does not immediately delete server data; server expiry and
-      cleanup still apply. Read the{' '}
-      <a href={withBase('/privacy/')} class="underline">
-        privacy draft
-      </a>{' '}
-      for those deletion limits.
     </p>
   </Section>
 </Layout>

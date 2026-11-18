@@ -173,7 +173,7 @@ function Content({ evidence }: { evidence: Evidence[] }) {
 }
 export default function ResultsWindow(props: { evidence: Evidence[] }) {
   return (
-    <IslandBoundary>
+    <IslandBoundary name="ResultsWindow">
       <Content {...props} />
     </IslandBoundary>
   );

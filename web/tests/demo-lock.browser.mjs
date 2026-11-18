@@ -1,16 +1,18 @@
 import assert from 'node:assert/strict';
 
 // Run against npm run preview; use an existing Playwright installation/browser.
-const { chromium } = await import(
-  process.env.PLAYWRIGHT_MODULE || 'playwright'
-);
-const browser = await chromium.launch({
+const playwright = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const browser = await playwright[process.env.BROWSER || 'chromium'].launch({
   headless: true,
   ...(process.env.BROWSER_EXECUTABLE && {
     executablePath: process.env.BROWSER_EXECUTABLE,
   }),
 });
-const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:4321';
+const base = (
+  process.env.TEST_BASE_URL || 'http://127.0.0.1:4321/rag-ladder/'
+).replace(/\/$/, '');
+// The header star counter is the only request allowed; it is mocked so no real call leaves.
+const starApi = 'https://api.github.com/repos/Shahid-Malek/rag-ladder';
 let checks = 0;
 
 try {
@@ -43,13 +45,19 @@ try {
                 },
         });
       }, mode);
+      await context.route(starApi, (route) =>
+        route.fulfill({
+          contentType: 'application/json',
+          body: '{"stargazers_count":7}',
+        }),
+      );
       const page = await context.newPage();
       const errors = [],
         requests = [];
       page.on('pageerror', (error) => errors.push(error.message));
       page.on('request', (request) => {
         if (['fetch', 'xhr'].includes(request.resourceType()))
-          requests.push(new URL(request.url()).pathname);
+          requests.push(request.url());
       });
       await page.goto(`${base}/${level}/`);
       const fields = page.locator('.demo-locked-field');
@@ -125,7 +133,11 @@ try {
         calls,
         ['absent', 'reduced', 'desktop'].includes(mode) ? [] : [35, 35, 35],
       );
-      assert.deepEqual(requests, []);
+      assert.ok(requests.filter((url) => url === starApi).length <= 1);
+      assert.deepEqual(
+        requests.filter((url) => url !== starApi),
+        [],
+      );
       assert.deepEqual(errors, []);
       assert.ok(
         await page.evaluate(

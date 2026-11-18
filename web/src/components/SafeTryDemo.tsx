@@ -7,7 +7,7 @@ export const DEMO_LOCKED = true;
 
 export default function SafeTryDemo({ level }: { level: Level }) {
   return (
-    <IslandBoundary>
+    <IslandBoundary name="SafeTryDemo">
       {DEMO_LOCKED ? <LockedDemo level={level} /> : <TryDemo level={level} />}
     </IslandBoundary>
   );

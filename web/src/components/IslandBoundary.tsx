@@ -1,7 +1,7 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 import ErrorNotice from './ErrorNotice';
 export default class IslandBoundary extends Component<
-  { children: ReactNode },
+  { children: ReactNode; name: string },
   { failed: boolean }
 > {
   state = { failed: false };
@@ -9,8 +9,10 @@ export default class IslandBoundary extends Component<
     return { failed: true };
   }
   componentDidCatch(error: Error, info: ErrorInfo) {
-    if (import.meta.env.DEV)
-      console.error('Interactive component failed', error, info.componentStack);
+    console.error(
+      `[IslandBoundary] ${this.props.name} failed: ${error?.name}: ${error?.message}\n${error?.stack}`,
+      info.componentStack,
+    );
   }
   render() {
     return this.state.failed ? (

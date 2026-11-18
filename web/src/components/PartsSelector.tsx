@@ -82,7 +82,7 @@ function Content({ stats }: { stats: LevelStat[] }) {
 }
 export default function PartsSelector(props: { stats: LevelStat[] }) {
   return (
-    <IslandBoundary>
+    <IslandBoundary name="PartsSelector">
       <Content {...props} />
     </IslandBoundary>
   );

@@ -2,90 +2,85 @@
 import Section from '@/components/Section.astro';
 import Layout from '@/layouts/Layout.astro';
 import PageHeader from '@/components/PageHeader.astro';
-import { dataNotice } from '@/lib/api';
+import { site } from '@/data/site';
 import { withBase } from '@/lib/paths';
 ---
 
 <Layout
-  title="Privacy notice · draft for owner review"
-  description="Temporary note processing, external AI services, browser session storage and deletion limits."
+  title="Privacy notice"
+  description="RAG-Ladder is a static site hosted on Cloudflare. It loads a GitHub star count, accepts no uploads and runs no advertising, analytics or session replay."
 >
   <PageHeader
-    eyebrow="LEGAL / DRAFT FOR OWNER REVIEW"
-    title="What happens to your notes."
-    description="The owner must verify service providers, retention and a contact before publishing this as a final notice."
+    eyebrow="LEGAL / PRIVACY"
+    title="Privacy notice."
+    description="RAG-Ladder is a static website. It does not ask for personal data and does not accept uploads."
   />
   <Section eyebrow="PRIVACY NOTICE" class="page-section prose">
-    <div class="notice">
-      <p>
-        <strong>Draft.</strong> Owner contact pending. Operator identity and
-        final service settings have not been supplied.
-      </p>
-    </div>
-    <h2>Before you upload</h2>
-    <p>{dataNotice}</p>
+    <p class="text-muted-foreground">Last updated: 18 November 2026</p>
+    <h2>Hosting</h2>
     <p>
-      You must accept the data notice and complete a security check before a
-      live session starts. The check loads after you accept. Files are sent only
-      when you choose “Upload queued documents”.
-    </p>
-    <h2>What stays in your browser</h2>
-    <p>
-      Selected files and the displayed conversation stay in page memory. They
-      are not saved in persistent browser storage. Temporary tab storage saves
-      session access, limits, expiry and pending upload progress so a live
-      session can resume after reload. The displayed conversation is not
-      restored; eligible Intermediate conversation history may remain on the
-      server until cleanup.
-    </p>
-    <h2>Operational records</h2>
-    <p>
-      Application logs contain operational metadata, not your notes, questions,
-      answers, filenames or credentials. Application metadata retention is
-      configured for 30 days. Hosting services may keep separate records under
-      the owner’s settings.
-    </p>
-    <h2>Ending a session and deletion</h2>
-    <p>
-      Use “End session” to request deletion of live files, extracted note data
-      and conversation history. Session expiry also requests cleanup. Closing a
-      tab or clearing browser storage does not immediately delete server data.
-      Cleanup can be delayed; provider records and database backups may remain
-      longer.
-    </p>
-    <h2>External services</h2>
-    <p>
-      Live use involves hosting, security-check, storage and AI service
-      providers. They receive the data needed to provide those services. Some
-      free AI services may retain prompts or use them for training. The owner
-      must confirm the final providers and their terms before live publication.
-    </p>
-    <p>
-      The security-check provider’s{' '}
+      The site is static and hosted on Cloudflare (Cloudflare Pages, served
+      through a Cloudflare Worker). To deliver and protect the site, Cloudflare
+      processes standard request data, such as your IP address and your
+      browser’s user agent. See{' '}
       <a
-        href="https://www.cloudflare.com/turnstile-privacy-policy/"
+        href="https://www.cloudflare.com/privacypolicy/"
         target="_blank"
         rel="noopener noreferrer"
+        class="underline"
       >
-        privacy addendum
-      </a>{' '}
-      explains its processing. Opening the repository link takes you to GitHub.
-      Your browser requests the repository's public star count from the GitHub
-      API (api.github.com), so GitHub receives that request.
+        Cloudflare’s privacy policy
+      </a>
+      .
     </p>
-    <h2>Local mock mode</h2>
+    <h2>GitHub star count</h2>
     <p>
-      In the labeled local mock, selected file contents are not read, uploaded,
-      indexed or sent to a model. Only the file name, type and size are
-      validated. No measured timings or answers are simulated. Mock state resets
-      on reload.
+      The Star button shows how many people starred the project on GitHub. To
+      get that number, your browser sends a request to GitHub’s API
+      (api.github.com), so GitHub receives that request, including your IP
+      address and user agent. No GitHub account or token is used. See{' '}
+      <a
+        href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+      >
+        GitHub’s privacy statement
+      </a>
+      .
     </p>
-    <h2>Cookies and contact</h2>
+    <h2>The “Try it” demo</h2>
     <p>
-      No advertising, analytics or session replay is enabled. Read the{' '}
-      <a href={withBase('/cookies/')}>storage and cookies draft</a> for
-      browser-storage details. Owner contact pending; a real contact is required
-      before final publication.
+      The demo is currently disabled. No files are uploaded, stored or sent to a
+      model. Its fields only show a “Coming soon” message.
+    </p>
+    <h2>Cookies and storage</h2>
+    <p>
+      The site sets no cookies. It keeps one item in your browser’s
+      localStorage: the cached star count. See{' '}
+      <a href={withBase('/cookies/')} class="underline">
+        cookies and browser storage
+      </a>
+      .
+    </p>
+    <h2>No tracking</h2>
+    <p>The site uses no advertising, analytics or session replay.</p>
+    <h2>Contact</h2>
+    <p>
+      Email{' '}
+      <a href={`mailto:${site.contact}`} class="underline">
+        {site.contact}
+      </a>
+      . For questions about the project, open an issue on{' '}
+      <a
+        href={site.issues}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+      >
+        GitHub Issues
+      </a>
+      .
     </p>
   </Section>
 </Layout>

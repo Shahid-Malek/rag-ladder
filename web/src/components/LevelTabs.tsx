@@ -61,7 +61,7 @@ function Content({ levels }: { levels: LevelInfo[] }) {
 }
 export default function LevelTabs(props: { levels: LevelInfo[] }) {
   return (
-    <IslandBoundary>
+    <IslandBoundary name="LevelTabs">
       <Content {...props} />
     </IslandBoundary>
   );

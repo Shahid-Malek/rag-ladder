@@ -3,7 +3,8 @@ export const site = {
   repositoryPrivate: false,
   repository: 'https://github.com/Shahid-Malek/rag-ladder',
   repositoryApi: 'https://api.github.com/repos/Shahid-Malek/rag-ladder',
-  contact: null,
+  contact: 'contact@shahidmalek.com',
+  issues: 'https://github.com/Shahid-Malek/rag-ladder/issues',
   starCountFallback: null,
   localSetup:
     'https://github.com/Shahid-Malek/rag-ladder#private-local-workflows-and-publication',
@@ -15,5 +16,4 @@ export const missingData = {
     value: null,
     label: 'Gold evidence excerpts are not included in the public export',
   },
-  contact: { value: null, label: 'Owner contact pending' },
 } as const;

@@ -90,7 +90,7 @@ function Content() {
 }
 export default function HeroSwarm() {
   return (
-    <IslandBoundary>
+    <IslandBoundary name="HeroSwarm">
       <Content />
     </IslandBoundary>
   );
